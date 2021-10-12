@@ -1,14 +1,60 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {View,} from 'react-native';
 import style from "../styles/app"
+import {NavigationContainer} from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import IndexUser from "./users/index";
+import EditUser from "./users/edit";
+
+function HomeScreen({navigation}) {
+    return (
+        <View style={style.view}>
+        </View>
+    );
+}
+
+function UserIndexScreen({navigation}) {
+    return (
+        <View style={style.view}>
+            <IndexUser navigation={navigation}/>
+        </View>
+    );
+}
+
+function UserEditScreen({navigation}) {
+    return (
+        <View style={style.view}>
+            <EditUser navigation={navigation}/>
+        </View>
+    );
+}
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
-  return (
-    <View style={style.container}>
-        <Text>Open up App.js to start working on your app pwet!</Text>
-        <StatusBar hidden={true} />
-    </View>
-  );
+    return (
+        <NavigationContainer>
+            <Drawer.Navigator initialRouteName="Home">
+                <Drawer.Screen name="Home" component={HomeScreen}/>
+                <Drawer.Screen name="User" component={UserIndexScreen}/>
+                <Drawer.Screen name="Edit" component={UserEditScreen} options={{
+                    drawerItemStyle: { height: 0 }
+                }}/>
+            </Drawer.Navigator>
+        </NavigationContainer>
+    );
 }
+
+// export default class App extends React.Component {
+//
+//     render() {
+//         return (<View style={style.container}>
+//                 <StatusBar hidden={true}/>
+//             </View>
+//         )
+//     }
+// }
+
+
+
 
