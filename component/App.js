@@ -36,8 +36,8 @@ export default function App() {
         <NavigationContainer>
             <Drawer.Navigator initialRouteName="Home">
                 <Drawer.Screen name="Home" component={HomeScreen}/>
-                <Drawer.Screen name="User" component={UserIndexScreen}/>
-                <Drawer.Screen name="Edit" component={UserEditScreen} options={{
+                <Drawer.Screen name="User Index" component={UserIndexScreen}/>
+                <Drawer.Screen name="Edit User" component={UserEditScreen} options={{
                     drawerItemStyle: { height: 0 }
                 }}/>
             </Drawer.Navigator>

@@ -16,11 +16,9 @@ export default class IndexUser extends React.Component {
         this.state = {
             allElements: [],
             text: null,
-            user: null
         }
         this.toggleData()
         this.onClick = this.onClick.bind(this)
-        console.log(props.navigation.state)
     }
 
 
@@ -45,38 +43,36 @@ export default class IndexUser extends React.Component {
     }
 
 
-    onClick() {
-        this.props.navigation.navigate('Edit', {userId: '1'})
+    onClick(item) {
+        this.props.navigation.navigate('Edit User', {user: item})
     }
 
 
-        render()
-        {
-            if (this.state.text === null) {
-                return (<View style={style.container}>
-                    <ActivityIndicator color='#4ecdc4' size="large"/>
-                </View>)
-            } else {
-                return (
-                    <View style={style.container}>
-                        <FlatList
-                            style={style.flatList}
-                            data={this.state.allElements}
-                            renderItem={({item}) =>
-                                <Pressable
-                                    onPress={this.onClick}
-                                    style={style.button}>
-                                    <Text style={style.title}>
-                                        {item.id} - {item.username}
-                                    </Text>
-                                </Pressable>
-                            }
-                        />
-                    </View>)
-
-            }
+    render() {
+        if (!this.state.text) {
+            return (<View style={style.container}>
+                <ActivityIndicator color='#4ecdc4' size="large"/>
+            </View>)
         }
+        return (
+            <View style={style.container}>
+                <FlatList
+                    style={style.flatList}
+                    data={this.state.allElements}
+                    renderItem={({item}) =>
+                        <Pressable
+                            onPress={() => this.onClick(item)}
+                            style={style.button}>
+                            <Text style={style.title}>
+                                {item.id} - {item.username}
+                            </Text>
+                        </Pressable>
+                    }
+                />
+            </View>
+        )
     }
+}
 
 
 
